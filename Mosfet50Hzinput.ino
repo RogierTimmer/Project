@@ -907,7 +907,7 @@ void setup() {
 int tempValue = 1;
 
 while (tempValue){
-  if(analogRead(CYCLE_START_PIN) > 2000){
+  if(analogRead(CYCLE_START_PIN) > 3680){
     tempValue = 0;
   }
 }
@@ -924,7 +924,7 @@ const int CAP_ADC = 255;///176;
  * potentiometer. We scale the SPWM in fact, allowing a synthesised lower voltage
  */
 void loop() {
-  if(analogRead(CYCLE_START_PIN) > 2000) {
+  if(analogRead(CYCLE_START_PIN) > 3680) {
     cycleStartTriggerd = 1;
   }
 
