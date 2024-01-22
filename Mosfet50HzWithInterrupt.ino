@@ -906,34 +906,19 @@ void setup() {
 
 int tempValue = 1;
 
-while (tempValue){
-  if(analogRead(CYCLE_START_PIN) > 2000){
-    tempValue = 0;
-  }
 }
-
-}
-
-
-
-const int CAP_ADC = 255;///176;
 
 /**
- * @brief loop
- * Shall read ADC value and allow user to modify PWM amplitude by means of
- * potentiometer. We scale the SPWM in fact, allowing a synthesised lower voltage
- */
-void loop() {
-  if(analogRead(CYCLE_START_PIN) > 2000) {
-    cycleStartTriggerd = 1;
-  }
+ * @brief startCycle
+ * The origional cycle as it was in the provided code
+*/
 
-  if(cycleStartTriggerd){
+int startCycle(readIndex){
   if(readPot)
   {
    
     t+=1;
-    if(20==t)
+    if(20==t) //Change if the loop is not running fast enough
     {
        readPot = 0;
     int p = analogRead(potPin);  //https://randomnerdtutorials.com/esp32-adc-analog-read-arduino-ide/
@@ -981,6 +966,30 @@ void loop() {
     }
    
   }
-  cycleStartTriggerd = 0;
-  }
+  return readIndex
+}
+
+const int CAP_ADC = 255;///176;
+
+/**
+ * @brief loop
+ * The loop will first check if the value is high, after this, it will start the PWM cycle. If the cycle is not running fast enough change t in startCycle
+ */
+void loop() {
+    int tempLoop = 1;
+
+  if (analogRead(CYCLE_START_PIN) > 3680){
+      if (tempLoop != 1){
+            readIndex = startCycle(readIndex);
+      }
+        else{
+        readIndex = 0;
+        startCycle(readIndex);
+        }
+        tempLoop = 0;
+    }
+    else{
+        tempLoop = 0;
+        }
+
 }
