@@ -513,21 +513,10 @@ void setup() {
     readings[thisReading] = 0;
   }
 
-  //Only start the loop once the signal is already high. Hopefully this will work, one downside is that is will work for only a moment.
-  //TODO add multithreading and interrupt
 
 int tempValue = 1;
 
 }
-
-/**
- * @brief startCycle
- * The origional cycle as it was in the provided code
-*/
-
-
-const int CAP_ADC = 255;///176;
-
 
 
 /**
