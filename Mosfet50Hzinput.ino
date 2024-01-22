@@ -31,7 +31,7 @@ uint8_t     pwm         =   1;
 #define SELF_TRIGGERING_IRQ 0
 #define DRIVE1_PWM          1
 #define DRIVE2_PWM          2
-#define CYCLE_START_PIN     2 //TODO look if appropriate
+#define CYCLE_START_PIN     34 //TODO look if appropriate
 
 const byte  led_gpio    =   32;       // the PWM pin the LED is attached to
 const int   potPin      =   27;       // Potentiometer is connected to GPIO 27 (Analog ADC1_CH6) 
@@ -900,6 +900,18 @@ void setup() {
   for (int thisReading = 0; thisReading < numReadings; thisReading++) {
     readings[thisReading] = 0;
   }
+
+  //Only start the loop once the signal is already high. Hopefully this will work, one downside is that is will work for only a moment.
+  //TODO add multithreading and interrupt
+
+int tempValue = 1;
+
+while (tempValue){
+  if(analogRead(CYCLE_START_PIN) > 2000){
+    tempValue = 0;
+  }
+}
+
 }
 
 
@@ -912,7 +924,7 @@ const int CAP_ADC = 255;///176;
  * potentiometer. We scale the SPWM in fact, allowing a synthesised lower voltage
  */
 void loop() {
-  if(digitalRead(CYCLE_START_PIN) == HIGH) {
+  if(analogRead(CYCLE_START_PIN) > 2000) {
     cycleStartTriggerd = 1;
   }
 
