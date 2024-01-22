@@ -419,10 +419,9 @@ int32_t sinetable[]=
 };
 
 
-uint8_t readPot =0;
+
 int32_t ctr=0;
-int32_t ctr2=180;
-int32_t val2 = 0;
+
 /**
  * @brief IRAM_ATTR
  * An interrupt service routine that runs whenever a rising edge is detected on
@@ -471,7 +470,7 @@ void IRAM_ATTR isr()
   if(ctr==MAX_STEPS)
   {
     ctr     = 0;
-    readPot = 1;  //allow amplitude to change
+
   }
 
   
@@ -552,7 +551,6 @@ const int CAP_ADC = 255;///176;
 /**
  * @brief loop
  * The loop will first check if the value is high, after this, it will start the PWM cycle. 
- * If the cycle is not running fast enough change t in startCycle
  */
 void loop() {
     int previousValue, currentValue;

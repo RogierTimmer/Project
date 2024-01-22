@@ -801,7 +801,7 @@ int32_t val2 = 0;
  * sine table. this allows each degree of the 50 or 60Hz waveform to have a 
  * separate pulse associated with it  
  */
-void IRAM_ATTR isr() 
+int IRAM_ATTR isr() 
 {
   int32_t val;
 
@@ -854,7 +854,6 @@ void IRAM_ATTR isr()
   /// 4. self triggering interrupt (mandatory, it just has to have some non-zero value)
   ///
   ledcWrite(SELF_TRIGGERING_IRQ, 1); // set the brightness of the LED
-
 }
 
 
@@ -987,7 +986,7 @@ int startCycle(int readIndex){
  */
 void loop() {
     int tempLoop = 1;
-    int readIndex;
+    int IndexCTR;
     int previousValue, currentValue;
     currentValue = 0;
 
@@ -1001,10 +1000,10 @@ void loop() {
     }
 
   if (previousValue == 0 && currentValue == 1){
-    readIndex = 0;
-    readIndex = startCycle(readIndex);
+    IndexCTR = 0;
+    IndexCTR = startCycle(IndexCTR);
   }
   else {
-    readIndex = startCycle(readIndex);
+    IndexCTR = startCycle(IndexCTR);
   }
 }
