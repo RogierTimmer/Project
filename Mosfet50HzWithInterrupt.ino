@@ -1000,7 +1000,7 @@ void loop() {
         tempLoop = 0;
     }
     else{
-        tempLoop = 0;
+        tempLoop = 1;
         }
 
 }
