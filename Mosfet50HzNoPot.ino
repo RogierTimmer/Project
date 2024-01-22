@@ -483,20 +483,6 @@ void IRAM_ATTR isr()
 
 
 
-
-
-int32_t t = 0;
-int32_t oldPotValue = -1;
-
-const int numReadings = 10;
-
-int readings[numReadings];      // the readings from the analog input
-int readIndex = 0;              // the index of the current reading
-int total = 0;                  // the running total
-int average = 0;                // the average
-int pV = 0;
-
-
 /**
  * @brief setup
  * the setup routine runs once when you press reset:
