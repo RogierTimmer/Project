@@ -988,19 +988,23 @@ int startCycle(int readIndex){
 void loop() {
     int tempLoop = 1;
     int readIndex;
+    int previousValue, currentValue;
+    currentValue = 0;
+
+    previousValue = currentValue;
 
   if (analogRead(CYCLE_START_PIN) > 3680){
-      if (tempLoop != 1){
-            readIndex = startCycle(readIndex);
-      }
-        else{
-        readIndex = 0;
-        startCycle(readIndex);
-        }
-        tempLoop = 0;
+    currentValue = 1;
+  }
+  else {
+    currentValue = 0;
     }
-    else{
-        tempLoop = 1;
-        }
 
-}
+  if (previousValue == 0 && currentValue == 1){
+    readIndex = 0;
+    readIndex = startCycle(readIndex);
+  }
+  else {
+    readIndex = startCycle(readIndex);
+  }
+    
