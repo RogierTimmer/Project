@@ -966,14 +966,15 @@ int startCycle(readIndex){
     }
    
   }
-  return readIndex
+  return readIndex;
 }
 
 const int CAP_ADC = 255;///176;
 
 /**
  * @brief loop
- * The loop will first check if the value is high, after this, it will start the PWM cycle. If the cycle is not running fast enough change t in startCycle
+ * The loop will first check if the value is high, after this, it will start the PWM cycle. 
+ * If the cycle is not running fast enough change t in startCycle
  */
 void loop() {
     int tempLoop = 1;
