@@ -803,15 +803,16 @@ int32_t val2 = 0;
  */
 void IRAM_ATTR isr() 
 {
+  int32_t val;
 
   ///
   /// 1. Compute next PWM register value
   ///
-    if (ctr+phaseOffset) < 360{
-    int32_t val = sinetable[(ctr + phaseOffset)] ; //scale the sine tablkee and apply offset
+    if ((ctr+phaseOffset) < 360){
+    val = sinetable[(ctr + phaseOffset)] ; //scale the sine tablkee and apply offset
   }
   else{
-    int32_t val = sinetable[(ctr + phaseOffset - 360)] ; //scale the sine tablkee and apply offset
+    val = sinetable[(ctr + phaseOffset - 360)] ; //scale the sine tablkee and apply offset
   }
   
   
