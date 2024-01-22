@@ -978,6 +978,7 @@ const int CAP_ADC = 255;///176;
  */
 void loop() {
     int tempLoop = 1;
+    int readIndex;
 
   if (analogRead(CYCLE_START_PIN) > 3680){
       if (tempLoop != 1){
