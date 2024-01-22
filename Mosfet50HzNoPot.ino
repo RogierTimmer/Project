@@ -31,7 +31,7 @@ uint8_t     pwm         =   1;
 #define SELF_TRIGGERING_IRQ 0
 #define DRIVE1_PWM          1
 #define DRIVE2_PWM          2
-#define CYCLE_START_PIN     34 //TODO look if appropriate
+#define CYCLE_START_PIN     34  // pin for output of sensor implemented
 
 const byte  led_gpio    =   32;       // the PWM pin the LED is attached to
 const int   potPin      =   27;       // Potentiometer is connected to GPIO 27 (Analog ADC1_CH6) 
@@ -41,8 +41,6 @@ int phaseOffset = 0; //TODO look if appropriate
 int IndexCTR = 0;
 
 //8-bit representation of a sinewave scaled to 0->255
-
-#define FULL_BRIDGE             1       // change this to "1" if you want to drive a full bridge
 
 //360 step
 #define MODULATING_FREQ         18000   // <-- 18KHz is 360 x 50 Hz for American 60Hz use number 21600 instead
@@ -467,10 +465,8 @@ void IRAM_ATTR isr()
   /// 3. increment counter
   ///
   ctr += 1;
-  if(ctr==MAX_STEPS)
-  {
+  if(ctr==MAX_STEPS){
     ctr     = 0;
-
   }
 
   
