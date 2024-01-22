@@ -433,7 +433,7 @@ int32_t val2 = 0;
  * sine table. this allows each degree of the 50 or 60Hz waveform to have a 
  * separate pulse associated with it  
  */
-int IRAM_ATTR isr() 
+void IRAM_ATTR isr() 
 {
   int32_t val;
 
