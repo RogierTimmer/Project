@@ -913,7 +913,10 @@ int tempValue = 1;
  * The origional cycle as it was in the provided code
 */
 
-int startCycle(readIndex){
+
+const int CAP_ADC = 255;///176;
+
+int startCycle(int readIndex){
   if(readPot)
   {
    
@@ -969,7 +972,6 @@ int startCycle(readIndex){
   return readIndex;
 }
 
-const int CAP_ADC = 255;///176;
 
 /**
  * @brief loop
