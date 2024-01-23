@@ -8,6 +8,8 @@ int8_t pwm = 1;
 #define DRIVE1_PWM 1
 #define DRIVE2_PWM 2
 #define CYCLE_START_PIN 34 //pin connected to the optocoupler that detects the zero crossing of the mains sine wave
+#define INPUT_ZCD 35 //pin connected to the optocoupler that detects the zero crossing of the mains sine wave
+#define OUTPUT_PIN 27 //pin connected to 34
 
 const byte  led_gpio    =   32;
 int32_t PWM_FEEDBACK_PIN = 18;
@@ -424,10 +426,16 @@ void setup() {
     ledcWrite(SELF_TRIGGERING_IRQ, pwm); //Means that pin 18 is basicly a clock pin at frequency MODULATING_FREQ (18KHz)
     ledcWrite(DRIVE1_PWM, 127);
     ledcWrite(DRIVE2_PWM, 127);
+    pinMode(INPUT_ZCD,INPUT);
+    pinMode(OUTPUT_PIN,OUTPUT);
     Serial.begin(115200);
 }
 
 void loop() {
-    Serial.println("loop working");
-    Delay(10000);
+    if(analogRead(INPUT_ZCD)>4000){
+        digitalWrite(OUTPUT_PIN, HIGH);
+    }
+    else{
+        digitalWrite(OUTPUT_PIN, LOW);
+    }
 }
