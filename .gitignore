@@ -1,1 +1,7 @@
 /.vscode
+/Mosfet50HzNoPot.ino
+/Mosfet50Hzinput.ino
+/Mosfet50HzWithInterrupt.ino
+/OrigionalCode
+/plot.py
+/TryInterupt.ino

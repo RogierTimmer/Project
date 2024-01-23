@@ -9,7 +9,7 @@ int8_t pwm = 1;
 #define DRIVE2_PWM 2
 #define CYCLE_START_PIN 35 //pin connected to the optocoupler that detects the zero crossing of the mains sine wave
 #define INPUT_ZCD 34 //pin connected to the optocoupler that detects the zero crossing of the mains sine wave
-#define OUTPUT_PIN 27 //pin connected to 34
+#define OUTPUT_PIN 27 //pin connected to 35
 
 const byte  led_gpio    =   32;
 int32_t PWM_FEEDBACK_PIN = 18;
