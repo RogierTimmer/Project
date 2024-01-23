@@ -13,6 +13,7 @@ int8_t pwm = 1;
 
 const byte  led_gpio    =   32;
 int32_t PWM_FEEDBACK_PIN = 18;
+int phaseOffset = 25; // 25 degrees phase offset
 
 #define MODULATING_FREQ         18000   // <-- 18KHz is 360 x 50 Hz for American 60Hz use number 21600 instead
 #define MAX_STEPS               360     //  one pwm update per degree of mains sine
@@ -387,9 +388,12 @@ int32_t ctr = 0;
 
 void isr(){
 
-    int32_t val = sinetable[ctr]; // get value from sinetable
+    int32_t val; // get value from sinetable
 
-    if(ctr>TRANSISTOR_SWITCH_STEP) // if we are past the TRANSISTOR_SWITCH_STEP
+int index = (ctr + phaseOffset) % MAX_STEPS; // scale the sine tablkee and apply offset
+ val = sinetable[index]; // get value from sinetable
+   
+    if(index>TRANSISTOR_SWITCH_STEP) // if we are past the TRANSISTOR_SWITCH_STEP
     {
         ledcWrite(DRIVE1_PWM, 0); // turn off transistor bank 1
         ledcWrite(DRIVE2_PWM, val); // turn on transistor bank 2
